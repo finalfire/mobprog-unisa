@@ -60,29 +60,7 @@ for (let [i, value] of x.entries()) {
 
 // forEach accetta una funzione il cui argomento sarà il valore corrente
 x.forEach(value => console.log(value));
-```
 
-## Something something functional-ish
-```javascript
-// Il metodo map() si invoca su di un iterable, accetta una funzione il cui parametro sarà il valore corrente dell'iterable, e restituisce un nuovo array
-let a = [1,2,3];
-a.map(x => x*x) // => [1,4,9]
-
-// Il metodo filter() restituisce un sottoinsieme di elementi dell'iterable su cui è invocato. Accetta una funzione il cui parametro sarà il valore corrente dell'iterable, e la funzione deve essere un predicato (restituire true o false)
-let b = [2,5,4,7,8,6,2];
-b.filter(x =>  x % 2 === 0) // => [2,4,8,6,2]
-
-// find() e findIndex()
-let c = [1,4,6,6,5];
-c.find(x => x % 2 === 0)    // => 4
-c.findIndex(x => x === 6)   // => 2
-
-// every() e some() sono predicati che si applicano sugli array
-// every() è equivalente alla semantica del quantificatore for all/per ogni: restituisce true se il predicato è vero per tutti gli elementi dell'array;
-// some() è equivalente alla semantica del quantificatore esistenziale: restituisce true se il predicato è vero per almeno un elemento dell'array
-let d = [1,2,3,4,5];
-a.every(x => x < 10)    // => true
-a.some(x => x === 8)    // => false
 
 // "to flat" un array significa eliminare la dimensione (ad esclusione della prima) più interna
 [1, [2,3]].flat()   // => [1,2,3]
@@ -125,6 +103,40 @@ let a = [1, 2, 3];
 a.join()    // => "1,2,3"
 ```
 
+## Something something functional-ish
+```javascript
+// Il metodo map() si invoca su di un iterable, accetta una funzione il cui parametro sarà il valore corrente dell'iterable, e restituisce un nuovo array
+let a = [1,2,3];
+a.map(x => x*x) // => [1,4,9]
+
+// Il metodo filter() restituisce un sottoinsieme di elementi dell'iterable su cui è invocato. Accetta una funzione il cui parametro sarà il valore corrente dell'iterable, e la funzione deve essere un predicato (restituire true o false)
+let b = [2,5,4,7,8,6,2];
+b.filter(x =>  x % 2 === 0) // => [2,4,8,6,2]
+
+// find() e findIndex()
+let c = [1,4,6,6,5];
+c.find(x => x % 2 === 0)    // => 4
+c.findIndex(x => x === 6)   // => 2
+
+// every() e some() sono predicati che si applicano sugli array
+// every() è equivalente alla semantica del quantificatore for all/per ogni: restituisce true se il predicato è vero per tutti gli elementi dell'array;
+// some() è equivalente alla semantica del quantificatore esistenziale: restituisce true se il predicato è vero per almeno un elemento dell'array
+let d = [1,2,3,4,5];
+a.every(x => x < 10)    // => true
+a.some(x => x === 8)    // => false
+
+// Processare gli array tramite funzioni
+let data = [1,1,3,5,5];
+// calcolare media e stddev
+const sum = (x,y) => x+y;
+const square = x => x*x;
+
+// reduce() applica la funzione sum al primo argomento e al resto dell'array, poi al risultato ottenuto e alla parte restante, etc...
+let mean = data.reduce(sum) / data.length; // mean = 3
+let deviations = data.map(x => x - mean);
+let stddev = Math.sqrt(deviations.map(square).reduce(sum) / (data.length - 1));
+```
+
 ## Funzioni
 
 - Vi è una importante differenza tra definire una funzione tramite una function declaration e una function expression, ovvero nel primo caso la funzione è creata prima che il codice contenuto in essa venga eseguito, mentre nel secondo caso la funzione esiste solo al momento della sua esecuzione
@@ -151,6 +163,77 @@ let calc = {
 };
 calc.add();
 calc.result     // => 2
+```
+
+- Se una funzione restituisce un oggetto, allora si può usare il valore restituito per invocare un suo metodo: questa pratica viene detta *method chaining*
+
+```javascript
+let x = new Square().x(100).y(100).size(50).fill("blue");
+```
+
+- Se una funzione viene invocata con un numero di parametri minore di quelli dichiarati, ai parametri restanti viene assegnato il loro valore di default (di solito `undefined`)
+
+```javascript
+function getProps(o, a = []) { // a = [] indica il valore di default per a nel caso in cui getProps sia invocata senza la sua specifica
+	for (let p in o)
+		a.push(p);
+	return a;
+}
+
+let o = {x: 1, y: 2};
+let a = getProps(o);
+getProps(o, a)
+```
+
+- Possiamo scrivere funzioni che possano essere invocate con un numero arbitrario di parametri, utilizzando l'operatore spread
+
+```javascript
+function sum(a,b,...rest) {
+    let sum = a + b;
+    for (let n of rest)
+        sum += n;
+    return sum;
+}
+
+sum(1,2)        // => 3
+sum(1,2,3,4)    // => 10
+```
+
+- Le funzioni in JS non sono valori primitivi ma speciali tipi di oggetti. Le proprietà di una funzione sono dei valori che appartengono alla funzione stessa, e sono condivisi tra le invocazioni:
+
+```javascript
+myInt.counter = 0;
+function myInt() {
+    return myInt.counter++;
+}
+myInt()     // => 0
+myInt()     // => 1
+
+// Compute factorials and cache results as properties of the function itself.
+function factorial(n) {
+    if (Number.isInteger(n) && n > 0) {
+        if (!(n in factorial)) {
+            factorial[n] = n * factorial(n-1);
+        }
+        return factorial[n];
+    } else {
+        return NaN;
+    }
+}
+factorial[1] = 1; // Initialize the cache to hold this base case.
+factorial(6) // => 720
+factorial[5] // => 120; the call above caches this value
+```
+
+- Il punto precedente può essere rappresentato anche tramite una closure; una closure è la combinazione di una oggetto funzione e lo scope (l'insieme di binding di variabili) in cui le variabili della funzione sono valutate
+
+```javascript
+let myInt = (function() {
+    let counter = 0;
+    return function() { return counter++; };
+})
+myInt()     // => 0
+myInt()     // => 1
 ```
 
 ## Try/catch/finally
