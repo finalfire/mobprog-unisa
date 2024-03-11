@@ -39,4 +39,4 @@ async function istogramma() {
     calcolaIstogramma(counter);
 }
 
-istogramma().then((e) => {})
+istogramma()
