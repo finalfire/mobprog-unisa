@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Conversione Temperatura</title>
+    <!-- Il manifest deve essere linkato nel documento affinché il browser possa leggerlo -->
+    <link rel="manifest" href="manifest.json">
 </head>
 	<body>
 	    <h1>Converti la tua temperatura!</h1>
@@ -25,5 +27,10 @@
                 for="input-temp input-unit output-unit">68 F</output>
         </form>
         <script src="convertitore.js"></script>
+        <script>
+            if('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/serviceworker.js', { scope: '/' });
+            }
+        </script> 
 	</body>
 </html>

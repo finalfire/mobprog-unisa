@@ -8,18 +8,19 @@ self.addEventListener("install", event => {
 	event.waitUntil(
         // waitUntil prende una closure (quindi una funzione anonima)
         (async () => {
-        // caches è l'API JavaScript per accedere alla cache
-        // caches.open(X) accede alla cache con nome X
-        // se non esiste, la crea
-		const cache = await caches.open(CACHE_NAME);
-		// cache.addAll(A) aggiunge alla cache tutti gli elementi
-        // nell'array A; aggiungere un elemento significa accedere
-        // alla risorsa e immagazzinarla nella cache
-        cache.addAll([
-			'/',
-			'/converter.js'
-		]);
-	})() // invoco la funzione data come parametro a waitUntil
+            // caches è l'API JavaScript per accedere alla cache
+            // caches.open(X) accede alla cache con nome X
+            // se non esiste, la crea
+            const cache = await caches.open(CACHE_NAME);
+            // cache.addAll(A) aggiunge alla cache tutti gli elementi
+            // nell'array A; aggiungere un elemento significa accedere
+            // alla risorsa e immagazzinarla nella cache
+            cache.addAll([
+                '/',
+                '/convertitore.js'
+            ]);
+        }
+        )() // invoco la funzione data come parametro a waitUntil
     );
 });
 
@@ -39,11 +40,10 @@ self.addEventListener("fetch", event => {
 			return cachedResponse;
 		} else {
 			try {
-                // altrimenti, la richiedo al server
-				const fetchResponse = await fetch(event.request);
-                // e la immagazzino nella cache
-				cache.put(event.request, fetchResponse.clone());
-				return fetchResponse;
+                console.log(event);
+                const fetchResponse = await fetch(event.request);
+                cache.put(event.request, fetchResponse.clone());
+                return fetchResponse;
 			} catch (e) {
 				// errore
 			}
