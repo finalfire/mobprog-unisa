@@ -1,0 +1,29 @@
+<!doctype html>
+<html dir="ltr">
+<head>
+	<meta charset="UTF-8" />
+	<title>Conversione Temperatura</title>
+</head>
+	<body>
+	    <h1>Converti la tua temperatura!</h1>
+        <form id="converter">
+            <label for="input-temp">Temperatura</label>
+            <input type="text" id="input-temp" name="input-temp" value="20" />
+            <label for="input-unit">da</label>
+            <select id="input-unit" name="input-unit">
+                <option value="c" selected>Celsius</option>
+                <option value="f">Fahrenheit</option>
+                <option value="k">Kelvin</option>
+            </select>
+            <label for="output-unit">a</label>
+            <select id="output-unit" name="output-unit">
+                <option value="c">Celsius</option>
+                <option value="f" selected>Fahrenheit</option>
+                <option value="k">Kelvin</option>
+            </select>
+            <output name="output-temp" id="output-temp" 
+                for="input-temp input-unit output-unit">68 F</output>
+        </form>
+        <script src="convertitore.js"></script>
+	</body>
+</html>
