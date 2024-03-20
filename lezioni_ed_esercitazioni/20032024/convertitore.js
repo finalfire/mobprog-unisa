@@ -42,5 +42,21 @@ function convertTemp(value, fromUnit, toUnit) {
 		}
 		return value;
 	}
-	throw new Error("Invalid unit");
+	throw new Error("Invalid unit");
 }
+
+form.addEventListener("input", () => {
+    console.log("prova")
+    // ottiene il valore da inputField; parseFloat fa parte della lib core di JavaScript
+    // è necessario poiché inputField.value è una stringa
+	const inputTemp = parseFloat(inputField.value);
+    // ottiene il valore scelto nel primo select
+	const fromUnit = fromUnitField.value;
+    // ottiene il valore scelto nel secondo select
+	const toUnit = toUnitField.value;
+    // invoco la funzione per la conversione
+	const outputTemp = convertTemp(inputTemp, fromUnit, toUnit);
+    // scrivo il valore ottenuto nel outputField
+	outputField.value = (Math.round(outputTemp * 100) / 100) + " " + toUnit.toUpperCase(); 
+});
+
