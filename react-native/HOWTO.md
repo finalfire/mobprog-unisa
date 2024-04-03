@@ -1,6 +1,6 @@
 # How-to: creazione app React Native (piattaforma target Android)
 
-1. Seguire le istruzioni alla seguente pagina () fino alla voce "Configure the ANDROID_HOME environment variable" (inclusa).
+1. Seguire le istruzioni a [questa pagina](https://reactnative.dev/docs/environment-setup?platform=android) fino alla voce "Configure the ANDROID_HOME environment variable" (inclusa).
 2. Per creare la main directory dell'app, nel terminale dare il seguente comando: `npx react-native@latest init MiaApp` dove `MiaApp` è il nome che vogliamo dare al progetto.
 3. Una volta terminato, muoversi nella cartella creata con `cd`
 4. Per testare l'app abbiamo bisogno di un development server; React Native si porta dietro Metro, che possiamo avviare una volta nella cartella con il comando `npm start`
