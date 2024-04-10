@@ -1,0 +1,16 @@
+{   
+    "manifest_version": "0.1",
+    "version": "0.1",
+    "name": "Memory",
+    "short_name": "Memory",
+    "description": "Il gioco del memory",
+    "start_url": "/",
+    "orientation": "any",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/icon1024.png",
+            "sizes": "1024x1024"
+        }
+    ]
+}

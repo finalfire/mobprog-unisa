@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="memory.css">
+    <link rel="manifest" href="manifest.json">
+    <title>Memory</title>
+  </head>
+  <body>
+    <h1>Memory</h1>
+    <div>
+      <p>Mosse totali: <span id="nMoves">0</span></p>
+    </div>
+
+    <div id="menu">
+      <button id="reset">Reset</button>
+    </div>
+
+    <div id="grid">
+      <div id="row-1">
+        <button id="btn-0">&nbsp;</button>
+        <button id="btn-1">&nbsp;</button>
+        <button id="btn-2">&nbsp;</button>
+        <button id="btn-3">&nbsp;</button>
+      </div>
+
+      <div id="row-2">
+        <button id="btn-4">&nbsp;</button>
+        <button id="btn-5">&nbsp;</button>
+        <button id="btn-6">&nbsp;</button>
+        <button id="btn-7">&nbsp;</button>
+      </div>
+
+      <div id="row-3">
+        <button id="btn-8">&nbsp;</button>
+        <button id="btn-9">&nbsp;</button>
+        <button id="btn-10">&nbsp;</button>
+        <button id="btn-11">&nbsp;</button>
+      </div>
+
+      <div id="row-4">
+        <button id="btn-12">&nbsp;</button>
+        <button id="btn-13">&nbsp;</button>
+        <button id="btn-14">&nbsp;</button>
+        <button id="btn-15">&nbsp;</button>
+      </div>
+    </div>
+
+    <script src="memory.js"></script>
+    <script>
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' });
+      }
+  </script>
+  </body>
+</html>

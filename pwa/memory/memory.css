@@ -1,0 +1,19 @@
+body {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+#reset {
+    width: 100px;
+    padding: 4px;
+    margin-bottom: 13px;
+}
+
+#grid button {
+    display: inline-block;
+    margin: 2px;
+    width: 46px;
+    height: 46px;
+    font-size: 2rem;
+}
