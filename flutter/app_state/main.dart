@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'counter_model.dart'; // Import the counter model
+import 'counter_model.dart';
 
 void main() => runApp(const MyApp());
 
