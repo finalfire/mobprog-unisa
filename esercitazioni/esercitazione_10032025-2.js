@@ -11,5 +11,3 @@ punto.somma = function() {
 
 console.log(punto);
 console.log(punto.somma());
-
-for (Object o: collection)
