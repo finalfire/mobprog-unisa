@@ -1,0 +1,90 @@
+import { Text, Button, View, TextInput, StyleSheet } from 'react-native';
+import { useState } from 'react';
+
+// StyleSheet.create() crea un nuovo foglio di stile
+// che possiamo utilizzare per applicare uno stile
+// ai componenti; prende in input un oggetto che rappresenta
+// uno o più stili
+const styles = StyleSheet.create({
+    vistaPrincipale: { padding: 13, flex: 1 },
+    titolo: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: '#ff2d42',
+    },
+    sottotitolo: {
+        fontSize: 20, fontWeight: '300',
+        color: '#d90429', marginBottom: 33
+    },
+
+    input: {
+        backgroundColor: '#edf2f4', // colore di sfondo
+        borderWidth: 1, // spessore del bordo
+        borderColor: '#d9029', // colore del bordo
+        padding: 8, // padding all'interno della textinput
+        marginVertical: 8
+    },
+
+    todoList: {
+      flex: 1,
+      padding: 5,
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+    },
+
+    todoView: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    },
+
+    todoText: {
+      fontSize: 11,
+      color: 'gray'
+    }
+});
+
+const TodoItem = () => {
+  return (
+    <View style={styles.todoView}>
+      <Text style={styles.todoText}>Testo del todo</Text>
+      <Button title="FATTO" onPress={() => {}}/>
+    </View>
+  );
+}
+
+const App = () => {
+    // definizione dello stato che conterrà il valore
+    // della textinput; perché usare uno stato?
+    // si usa uno stato poiché il valore della textinput
+    // potrebbe cambiare a tempo di esecuzione dell'app
+    const [todo, setTodo] = useState(""); 
+
+    return (
+        <View style={styles.vistaPrincipale}>
+            <Text style={styles.titolo}>ToDos App</Text>
+            <Text style={styles.sottotitolo}>Mobile Programming - 2024/2025</Text>
+            <Text>Il testo inserito è {todo}</Text>
+            <TextInput
+                style={styles.input}
+                //onChangeText = {(testo) => { setTodo(testo) }}
+                onChangeText = {setTodo}
+                placeholder = "Cosa vuoi fare?"
+            ></TextInput>
+            <Button
+                // la arrow function qui non fa nulla
+                onPress = {() => {return;}}
+                title = "AGGIUNGI"
+            ></Button>
+            <View style={styles.todoList}>
+              <TodoItem />
+              <TodoItem />
+              <TodoItem />
+              <TodoItem />
+            </View>
+        </View>
+    )
+}
+
+export default App;
