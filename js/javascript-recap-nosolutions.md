@@ -3,56 +3,11 @@
 ### Esercizio 1: Creazione e Modifica di un Oggetto
 Dichiarare un oggetto `student` con le proprietà `name`, `age` e `course`. Modifica poi il valore di `course` e aggiungi una nuova proprietà `grade`.
 
-```javascript
-let student = {
-    name: "Francesco",
-    age: 35,
-    course: "Mobile Programming"
-};
-
-let change = (student) => {
-    console.log("Sto modificando l'oggetto studente...");
-    student.course = "Fondamenti di programmazione";
-    student.grade = 0;
-}
-
-console.log(student);
-change(student);
-console.log(student);
-```
-
 ### Esercizio 2: Accesso agli Elementi di un Oggetto
 Dichiarare un oggetto `car` con le proprietà `brand`, `model` e `year`. Stampa il valore di `brand` e `year` utilizzando sia la notazione dot che la notazione bracket.
 
-```javascript
-let generateCar = (brand, model, year) => {
-    return {
-        brand: brand,
-        model: model,
-        year: year
-    }
-};
-
-let car1 = generateCar("Citröen", "C3", 2019);
-let car2 = generateCar("Audi", "R", 2010);
-
-car1.brand = "Renault";
-car2['year'] = 1999;
-
-console.log(car1.brand + ", " + car1.year);         // dot notation
-console.log(car2['brand'] + ", " + car2['year']);   // bracket notation
-```
-
 ### Esercizio 3: Oggetto Vuoto e Aggiunta di Proprietà
 Dichiarare un oggetto vuoto `book` e aggiungi successivamente le proprietà `title`, `author` e `pages`.
-
-```javascript
-let book = {};
-book.title = "Guida galattica per gli autostoppisti.";
-book.author = "Douglas Adams";
-book.pages = 42;
-console.log(book);
-```
 
 ### Esercizio 4: Verifica della Presenza di una Proprietà
 Dichiarare un oggetto `phone` con le proprietà `brand` e `model`. Verifica se la proprietà `price` esiste.
@@ -68,10 +23,10 @@ Dichiarare un array `colors` contenente i valori "red", "green" e "blue". Stampa
 Dichiarare un array `fruits` e aggiungi "apple" e "banana". Rimuovi il primo elemento.
 
 ### Esercizio 3: Iterazione su un Array
-Dichiarare un array `numbers` con i valori `[10, 20, 30, 40]` e stampa ciascun valore utilizzando un ciclo `for`.
+Dichiarare un array `numbers` con i valori `[10, 20, 30, 40]` e stampare ciascun valore utilizzando un ciclo `for`.
 
 ### Esercizio 4: Contare gli Elementi di un Array
-Dichiarare un array `cities` e stampa il numero di elementi.
+Dichiarare un array `cities` e stampare il numero di elementi.
 
 ---
 
