@@ -36,7 +36,7 @@ copy[0] = 1;    // solo copy è modificato
 
 // rimuovere duplicati da un array
 let dups = [1,1,3,4,2,8,8,2];
-let noDups = [..new Set(dups)];     // => [1,3,4,2,8]
+let noDups = [...new Set(dups)];     // => [1,3,4,2,8]
 
 a = new Array();    // array vuoto, equivalente a []
 a = new Array(10);  // array di length 10
